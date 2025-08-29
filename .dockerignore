@@ -1,0 +1,17 @@
+.venv
+__pycache__
+.pytest_cache
+storage
+*.pyc
+*.pyo
+*.pyd
+*.log
+dist
+build
+node_modules
+Dockerfile*
+.git
+.gitignore
+README.md
+docs
+tests
