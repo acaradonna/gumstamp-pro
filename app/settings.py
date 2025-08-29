@@ -8,6 +8,11 @@ class Settings(BaseModel):
     storage_dir: Path = Path(os.getenv("STORAGE_DIR", "./storage")).resolve()
     base_url: str = os.getenv("BASE_URL", "http://localhost:8000")
     gumroad_product_id: str | None = os.getenv("GUMROAD_PRODUCT_ID")
+    allowed_origins: list[str] = (
+        [o.strip() for o in os.getenv("ALLOWED_ORIGINS", "*").split(",")]
+        if os.getenv("ALLOWED_ORIGINS")
+        else ["*"]
+    )
 
 
 settings = Settings()

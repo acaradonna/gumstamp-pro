@@ -4,9 +4,11 @@ from .routes import gumroad, creator, download
 
 app = FastAPI(title="Gumstamp Pro", version="0.1.0")
 
+from .settings import settings
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=settings.allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
