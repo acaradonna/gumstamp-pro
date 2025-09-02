@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: gumstamp
+    runtime: docker
+    plan: starter
+    autoDeploy: true
+    region: oregon
+    dockerCommand: ""
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /healthz
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: BASE_URL
+        value: https://gumstamp.onrender.com
+      - key: GUMROAD_PRODUCT_ID
+        sync: false
+      - key: STORAGE_DIR
+        value: /data
+      - key: ALLOWED_ORIGINS
+        value: "https://gumstamp.com,https://www.gumstamp.com,https://gumstamp.onrender.com"
+      - key: GIT_SHA
+        sync: false
+      - key: RELEASE
+        sync: false
+    disk:
+      name: data
+      mountPath: /data
+      sizeGB: 5
