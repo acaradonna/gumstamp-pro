@@ -4,6 +4,7 @@ from typing import Optional
 from ..settings import settings
 from ..utils.tokens import sign_token
 from ..utils.gumroad import verify_license
+import json
 
 router = APIRouter()
 
@@ -32,6 +33,15 @@ async def upload_source_pdf(
     dest.parent.mkdir(parents=True, exist_ok=True)
     contents = await file.read()
     dest.write_bytes(contents)
+
+    # Persist simple config alongside source to influence stamping (demo-friendly)
+    cfg_path = settings.storage_dir / "source" / f"{product_id}.json"
+    try:
+        cfg = {"footer_text": footer_text}
+        cfg_path.write_text(json.dumps(cfg))
+    except Exception:
+        # Non-fatal; proceed without saved config
+        pass
 
     template = f"{settings.base_url}/download/{{token}}"
     return CreateConfigResponse(product_id=product_id, source_key=str(dest), download_template=template)
