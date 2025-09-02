@@ -13,6 +13,12 @@ class Settings(BaseModel):
         if os.getenv("ALLOWED_ORIGINS")
         else ["*"]
     )
+    
+    # Monitoring settings
+    sentry_dsn: str | None = os.getenv("SENTRY_DSN")
+    environment: str = os.getenv("ENVIRONMENT", "production")
+    enable_tracing: bool = os.getenv("ENABLE_TRACING", "true").lower() == "true"
+    enable_metrics: bool = os.getenv("ENABLE_METRICS", "true").lower() == "true"
 
 
 settings = Settings()

@@ -7,3 +7,13 @@ pypdf==4.3.1
 reportlab==4.2.2
 python-dotenv==1.0.1
 pytest==8.3.2
+# Monitoring and observability
+opentelemetry-api==1.21.0
+opentelemetry-sdk==1.21.0
+opentelemetry-instrumentation-fastapi==0.42b0
+opentelemetry-instrumentation-requests==0.42b0
+opentelemetry-instrumentation-logging==0.42b0
+opentelemetry-exporter-otlp==1.21.0
+sentry-sdk[fastapi]==1.40.0
+structlog==23.2.0
+psutil==5.9.6
