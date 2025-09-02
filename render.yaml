@@ -23,6 +23,23 @@ services:
         sync: false
       - key: RELEASE
         sync: false
+      # Monitoring configuration
+      - key: SENTRY_DSN
+        sync: false
+      - key: OTLP_ENDPOINT
+        sync: false
+      - key: GRAFANA_CLOUD_API_KEY
+        sync: false
+      - key: ENVIRONMENT
+        value: production
+      - key: ENABLE_TRACING
+        value: "true"
+      - key: ENABLE_METRICS
+        value: "true"
+      - key: SLOW_REQUEST_THRESHOLD
+        value: "2.0"
+      - key: ERROR_RATE_THRESHOLD
+        value: "5.0"
     disk:
       name: data
       mountPath: /data
